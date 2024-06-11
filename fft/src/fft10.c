@@ -44,6 +44,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include "../include/fft10.h"
 
 #define MAX_LENGTH 100000000
 
@@ -54,7 +55,6 @@
 float x[MAX_LENGTH*2]; // array to be transformed 
 float X[MAX_LENGTH*2]; // transformed array
 
-void local_fft_radix10(int read_from, int read_jump, int write_to, int lgth, float* x_in, float* X_out);
 
 int main() {
     // Test the local_fft_radix10 function
@@ -109,9 +109,9 @@ int main() {
  *     int read_from = 0;
  *     int read_jump = 1;
  *     int write_to = 0;
- *     int lgth = 1024;
- *     float x_in[1024];
- *     float X_out[1024];
+ *     int lgth = 1000;
+ *     float x_in[1000];
+ *     float X_out[1000];
  *     // Initialize x_in with your data
  *     local_fft_radix10(read_from, read_jump, write_to, lgth, x_in, X_out);
  * 
@@ -129,6 +129,7 @@ int main() {
  * ----------------------------------------------------------------------------
  */
 void local_fft_radix10(int read_from, int read_jump, int write_to, int lgth, float* x_in, float* X_out) {
+    
     if(lgth==1)
     { // copy data to the array to be transformed 
         X_out[2*write_to]   = x_in[2*read_from];
