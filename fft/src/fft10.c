@@ -129,8 +129,11 @@ int main() {
  * ----------------------------------------------------------------------------
  */
 void local_fft_radix10(int read_from, int read_jump, int write_to, int lgth, float* x_in, float* X_out) {
-    
-    if(lgth==1)
+    if(!(lgth%10))
+    {
+        return;
+    }
+    else if(lgth==1)
     { // copy data to the array to be transformed 
         X_out[2*write_to]   = x_in[2*read_from];
         X_out[2*write_to+1] = x_in[2*read_from+1];
